@@ -1,6 +1,5 @@
 import random
 
-# Clases
 class Entrenador:
     def __init__(self, nombre: str):
         self.nombre = nombre
@@ -16,17 +15,14 @@ class Pokemon:
     def recuperar(self):
         self.vida_actual = self.vida_max
 
-# Variables globales que las funciones usarán según el enunciado (1 o 2)
 entrenador1 = None
 pokemon1 = None
 entrenador2 = None
 pokemon2 = None
 
-# Contadores de resultados
 victorias = 0
 derrotas = 0
 
-# Funciones requeridas
 def crearEntrenadorPokemon(tipo: int):
     """
     tipo = 1 => crea al entrenador y pokemon del jugador
@@ -51,9 +47,6 @@ def crearEntrenadorPokemon(tipo: int):
         print("Tipo inválido para crear entrenador/pokemon (debe ser 1 o 2).")
 
 def valorDeAtaque(tipo: int) -> int:
-    """
-    Devuelve un entero aleatorio entre 0 y ataque máximo del pokemon asociado al tipo (1 o 2).
-    """
     if tipo == 1:
         if pokemon1 is None:
             return 0
@@ -90,10 +83,6 @@ def defender(receptor: int, valor_ataque: int) -> int:
         return 0
 
 def recuperar():
-    """
-    Recupera la vida actual de *su* pokemon hasta su vida máxima.
-    No recibe parámetros según la especificación del examen.
-    """
     if pokemon1 is None:
         print("Aún no tienes un Pokémon. Primero crea tu entrenador y pokemon.")
         return
@@ -121,7 +110,6 @@ def main():
             print("¡Comienza la pelea! Tú comienzas siempre.\n")
             turno = 1  # 1 -> jugador ataca; 2 -> rival ataca
 
-            # Bucle de combate por turnos
             while pokemon1.vida_actual > 0 and pokemon2.vida_actual > 0:
                 if turno == 1:
                     ataque = valorDeAtaque(1)
@@ -136,7 +124,6 @@ def main():
                     print(f"Resumen: {entrenador1.nombre} - {pokemon1.nombre} => {vida_restante}/{pokemon1.vida_max} vida restante.\n")
                     turno = 1
 
-            # Determinar ganador y actualizar contadores
             if pokemon1.vida_actual <= 0:
                 print(f"¡Ha ganado {entrenador2.nombre} con {pokemon2.nombre}!\n")
                 derrotas += 1
@@ -144,7 +131,6 @@ def main():
                 print(f"¡Ha ganado {entrenador1.nombre} con {pokemon1.nombre}!\n")
                 victorias += 1
 
-            # borrar rival para forzar creación en la próxima pelea (opcional)
             pokemon2 = None
 
         elif opcion == 'F':
